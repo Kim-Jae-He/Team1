@@ -10,8 +10,13 @@ import React,{useEffect, useState} from 'react';
  * 
  */
 
+
+// 1. 최상위에서 호출되야한다.
+// 2. 오직 react에서만 hook을 호출해야한다.
+
 function App() {
   const [count, setCount] = useState(0);
+
   useEffect(() => console.log('hello'));
 
   useEffect(()=> {
