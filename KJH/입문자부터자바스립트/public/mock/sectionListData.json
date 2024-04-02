@@ -1,0 +1,23 @@
+{
+    "sectionInfoList":[
+        {
+    "sectionTitle": "인기상품",
+    "productList":[
+        {
+            "imgScr":"/입문자부터자바스크립트/public/assets/파프리카.jpg",
+            "id":1,
+            "name": "파프리카 2입",
+            "discountPercent":20,
+            "price":2000,
+            "orignalPrcie":2500
+        },
+        {
+            "imgScr":"/입문자부터자바스크립트/public/assets/단호박.jpg",
+            "id":1,
+            "name": "단호박",
+            "discountPercent":20,
+            "price":4000,
+            "orignalPrcie":5000
+        }
+    ]
+}]}
