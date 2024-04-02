@@ -1,5 +1,5 @@
-import { getProductCard } from "./module/productCard";
-import { appendChildList, makeDOMwithPro } from "./utils/dom";
+import { getProductCard } from "./module/productCard.js";
+import { appendChildList, makeDOMwithPro } from "./utils/dom.js";
 
 const sectionDOM = document.getElementsByName("section")[0];
 
