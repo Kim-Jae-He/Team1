@@ -1,25 +1,15 @@
 import styles from "./App.module.css"
-
-import Button from "./components/Button"
-
-import Header from "./Header"
+import Header from "./Header.js"
+import Button from "./components/Button.js"
+import ListContainer from "./ListContainer.js"
 
 function App() {
   return (
     <>
       <div className={styles.nav}>Nav </div>
       <Header />
-      <div className={styles.listContainer}>ListContainer</div>
-      <Button
-        style={{
-          fontSize: "14px",
-          backgroundColor: "green",
-          color: "white",
-        }}
-      >
-        New Issue
-      </Button>
-
+      <ListContainer/>
+      
       <div className={styles.footer}>footer</div>
     </>
   )
