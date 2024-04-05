@@ -5,3 +5,11 @@
     border: 1px solid rgba(58, 82, 82, 0.6);
     align-items: center;
 }
+
+.ul{
+    list-style: none;
+  }
+  
+  .li{
+    list-style: none;
+  }

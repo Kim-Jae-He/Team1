@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import Button from "./components/Button"
 import styles from "./ListContainer.module.css"
+import ListItem from "./components/ListItem"
 
 const ListContainer = () => {
   const [inputValue, setInputValue] = useState("is:pr is:open")
@@ -28,6 +29,9 @@ const ListContainer = () => {
           >
             New Issue
           </Button>
+        </div>
+        <div className={styles.container}>
+            <ListItem />
         </div>
       </div>
     </>
