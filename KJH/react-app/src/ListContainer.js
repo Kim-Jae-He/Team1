@@ -6,7 +6,7 @@ import ListItemLayout from "./components/ListItem_Layout"
 
 const ListContainer = () => {
   const [inputValue, setInputValue] = useState("is:pr is:open")
-
+  const [checklist, setChecklist] = useState([])
   return (
     <>
       <div className={styles.listContainer}>
@@ -39,7 +39,46 @@ const ListContainer = () => {
           </div>
         </ListItemLayout>
         <div className={styles.container}>
-          <ListItem />
+          <ListItem
+            badges={[
+              {
+                color: "red",
+                title: "bug2",
+              },
+            ]}
+          />
+          <ListItem
+            badges={[
+              {
+                color: "red",
+                title: "bug3",
+              },
+            ]}
+          />
+          <ListItem
+            badges={[
+              {
+                color: "blue",
+                title: "bug4",
+              },
+            ]}
+          />
+          <ListItem
+            badges={[
+              {
+                color: "beige",
+                title: "bug5",
+              },
+            ]}
+          />
+          <ListItem
+            badges={[
+              {
+                color: "red",
+                title: "bug2",
+              },
+            ]}
+          />
         </div>
       </div>
     </>

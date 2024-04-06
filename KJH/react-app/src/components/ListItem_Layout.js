@@ -1,10 +1,10 @@
 import styles from "./ListItem_Layout.module.css"
-import cx from "clsx"
+import clsx from "clsx"
 
 const ListItemLayout = ({ children, className }) => {
   return (
     <>
-      <div className={cx(styles.wrapper, className)}>
+      <div className={clsx(styles.wrapper, className)}>
         <input
           type="checkbox"
           className={styles.checkbox}
