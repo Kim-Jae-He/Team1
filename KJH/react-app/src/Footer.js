@@ -44,16 +44,18 @@ const footerItems = [
 const Footer = () => {
   return (
     <>
-      <ul className={styles.footer}>
-        {footerItems.map(({ link, title }) => (
-          <li className={styles.item} key={title}>
-            <a className={styles.link} href={link}>
-              {title}
-            </a>
-          </li>
-        ))}
-      </ul>
-      ;
+      <div>
+        <ul className={styles.footer}>
+          {footerItems.map(({ link, title }) => (
+            <li className={styles.item} key={title}>
+              <a className={styles.link} href={link}>
+                {title}
+              </a>
+            </li>
+          ))}
+        </ul>
+        ;
+      </div>
     </>
   )
 }
