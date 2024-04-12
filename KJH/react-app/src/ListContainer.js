@@ -6,10 +6,12 @@ import ListItemLayout from "./components/ListItem_Layout"
 import clsx from "clsx"
 
 import Modal from "./components/Modal"
+import Pagination from "./components/Pagination"
 
 const ListContainer = () => {
   const [inputValue, setInputValue] = useState("is:pr is:open")
   const [list, setList] = useState([])
+  const [page, setPage] = useState(1)
   const OpenClosedFilter = ({ size, state, Onclick, selected }) => {
     return (
       <>
@@ -132,6 +134,13 @@ const ListContainer = () => {
             />
           ))}
         </div>
+      </div>
+      <div className={styles.paginationContainer}>
+      <Pagination
+        maxPage={10}
+        currentPage={page}
+        onClickPageButton={(number) => setPage(number)}
+      />
       </div>
     </>
   )
