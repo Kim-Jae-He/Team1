@@ -2,16 +2,16 @@ import Badge from "./Badge"
 import styles from "./ListItem.module.css"
 import ListItemLayout from "./ListItem_Layout"
 
-const ListItem = ({checked, onChangeCheckBox, onclickTitle, badges}) => {
+const ListItem = ({ checked, onClickCheckBox, onclickTitle, badges, data }) => {
   return (
     <>
-      <ListItemLayout>
+      <ListItemLayout checked={checked} onClick={onClickCheckBox}>
         <div>
           <div role="buton" onClick={onclickTitle} className={styles.title}>
-            issue example
+            {data.title}
             {badges &&
-              badges.map((badgeProps, idx) => (
-                <Badge key={idx} {...badgeProps} />
+              badges.map((props, idx) => (
+                <Badge key={idx} {...props} />
               ))}
           </div>
           <div className={styles.description}># Description</div>

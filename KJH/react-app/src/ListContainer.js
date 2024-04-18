@@ -1,17 +1,29 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Button from "./components/Button"
 import styles from "./ListContainer.module.css"
 import ListItem from "./components/ListItem"
 import ListItemLayout from "./components/ListItem_Layout"
 import clsx from "clsx"
-
+import axios from "axios"
 import Modal from "./components/Modal"
 import Pagination from "./components/Pagination"
 
 const ListContainer = () => {
   const [inputValue, setInputValue] = useState("is:pr is:open")
+  const [checked, setChecked] = useState(false)
   const [list, setList] = useState([])
   const [page, setPage] = useState(1)
+
+  async function getData() {
+    const { data } = await axios.get(
+      `https://api.github.com/repos/facebook/react/issues`,
+    )
+    setList(data.data)
+  }
+  useEffect(() => {
+    getData()
+  }, [])
+
   const OpenClosedFilter = ({ size, state, Onclick, selected }) => {
     return (
       <>
@@ -121,26 +133,23 @@ const ListContainer = () => {
         <ListItemLayout className={styles.listfilter}>
           <ListFilter onChangeFilter={(filterData) => {}} />
         </ListItemLayout>
-        <div className={styles.container}>
-          {list.map((ListItem, index) => (
-            <ListItem
-              key={index}
-              badges={[
-                {
-                  color: "red",
-                  title: "bug2",
-                },
-              ]}
-            />
-          ))}
-        </div>
+        {list.map((item) => (
+          <ListItem
+            key={item.id}
+            data={item}
+            checked={checked}
+            onClickCheckBox={() => setChecked((checked) => !checked)}
+            badges={[{ title: "Bug", color: "red" }]}
+          />
+        ))}
       </div>
+      
       <div className={styles.paginationContainer}>
-      <Pagination
-        maxPage={10}
-        currentPage={page}
-        onClickPageButton={(number) => setPage(number)}
-      />
+        <Pagination
+          maxPage={10}
+          currentPage={page}
+          onClickPageButton={(number) => setPage(number)}
+        />
       </div>
     </>
   )
