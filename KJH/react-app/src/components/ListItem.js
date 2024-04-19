@@ -7,12 +7,10 @@ const ListItem = ({ checked, onClickCheckBox, onclickTitle, badges, data }) => {
     <>
       <ListItemLayout checked={checked} onClick={onClickCheckBox}>
         <div>
-          <div role="buton" onClick={onclickTitle} className={styles.title}>
+          <div role="button" onClick={onclickTitle} className={styles.title}>
             {data.title}
             {badges &&
-              badges.map((props, idx) => (
-                <Badge key={idx} {...props} />
-              ))}
+              badges.map((props, idx) => <Badge key={idx} {...props} />)}
           </div>
           <div className={styles.description}># Description</div>
         </div>

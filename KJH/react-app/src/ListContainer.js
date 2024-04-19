@@ -18,7 +18,7 @@ const ListContainer = () => {
     const { data } = await axios.get(
       `https://api.github.com/repos/facebook/react/issues`,
     )
-    setList(data.data)
+    setList(data)
   }
   useEffect(() => {
     getData()
@@ -133,17 +133,18 @@ const ListContainer = () => {
         <ListItemLayout className={styles.listfilter}>
           <ListFilter onChangeFilter={(filterData) => {}} />
         </ListItemLayout>
-        {list.map((item) => (
-          <ListItem
-            key={item.id}
-            data={item}
-            checked={checked}
-            onClickCheckBox={() => setChecked((checked) => !checked)}
-            badges={[{ title: "Bug", color: "red" }]}
-          />
-        ))}
+        {list &&
+          list.map((item) => (
+            <ListItem
+              key={item.id}
+              data={item}
+              checked={checked}
+              onClickCheckBox={() => setChecked((checked) => !checked)}
+              badges={[{ title: "Bug", color: "red" }]}
+            />
+          ))}
       </div>
-      
+
       <div className={styles.paginationContainer}>
         <Pagination
           maxPage={10}
