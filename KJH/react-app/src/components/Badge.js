@@ -1,8 +1,15 @@
-import styles from "./Badge.module.css";
-import clsx from "clsx"; 
+import styles from "./Badge.module.css"
 
-const Badge = ({ title, color }) => { 
-  return <span className={clsx(styles.badge, styles[color])}>{title}</span>;
-};
+const Badge = ({ name, color }) => {
+  const badgeStyle = {
+    background: `#${color}`,
+  }
 
-export default Badge;
+  return (
+    <span className={styles.badge} style={badgeStyle}>
+      {name}
+    </span>
+  )
+}
+
+export default Badge

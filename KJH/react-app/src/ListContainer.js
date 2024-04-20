@@ -14,15 +14,16 @@ const ListContainer = () => {
   const [list, setList] = useState([])
   const [page, setPage] = useState(1)
 
-  async function getData() {
+  async function getData(pageParams) {
     const { data } = await axios.get(
       `https://api.github.com/repos/facebook/react/issues`,
+      { params: { page: pageParams } },
     )
     setList(data)
   }
   useEffect(() => {
-    getData()
-  }, [])
+    getData(page)
+  }, [page])
 
   const OpenClosedFilter = ({ size, state, Onclick, selected }) => {
     return (
@@ -140,7 +141,6 @@ const ListContainer = () => {
               data={item}
               checked={checked}
               onClickCheckBox={() => setChecked((checked) => !checked)}
-              badges={[{ title: "Bug", color: "red" }]}
             />
           ))}
       </div>
