@@ -5,108 +5,32 @@ import ListItem from "./components/ListItem"
 import ListItemLayout from "./components/ListItem_Layout"
 import clsx from "clsx"
 import axios from "axios"
-import Modal from "./components/Modal"
 import Pagination from "./components/Pagination"
+import OpenClosedFilters from "./components/OpenClosedFilters"
+import ListFilter from "./components/ListFilter"
+import { GITHUB_API } from "./api"
 
 const ListContainer = () => {
   const [inputValue, setInputValue] = useState("is:pr is:open")
   const [checked, setChecked] = useState(false)
   const [list, setList] = useState([])
   const [page, setPage] = useState(1)
+  const [isOpenMode, setIsOpenMode] = useState(true)
 
-  async function getData(pageParams) {
-    const { data } = await axios.get(
-      `https://api.github.com/repos/facebook/react/issues`,
-      { params: { page: pageParams } },
+  async function getData(params) {
+    const data = await axios.get(
+      `${GITHUB_API}/repos/facebook/react/issues`,
+      params,
     )
-    setList(data)
+    setList(data.data)
   }
   useEffect(() => {
-    getData(page)
-  }, [page])
+    getData(page, isOpenMode)
+  }, [page, isOpenMode])
 
-  const OpenClosedFilter = ({ size, state, Onclick, selected }) => {
-    return (
-      <>
-        <span
-          role="button"
-          className={clsx(styles.textFilter, {
-            [styles.selected]: selected,
-          })}
-          onClick={Onclick}
-        >
-          {size} {state}
-        </span>
-      </>
-    )
-  }
-
-  const OpenClosedFilters = ({ data }) => {
-    const [isOPenMode, setIsOPenMode] = useState(true)
-
-    const openModeDataSize = 1
-    const closedModeDataSize = 2
-    return (
-      <>
-        <OpenClosedFilter
-          size={openModeDataSize}
-          state="Open"
-          selected={isOPenMode}
-          Onclick={() => setIsOPenMode(true)}
-        />
-        <OpenClosedFilter
-          size={closedModeDataSize}
-          state="Closed"
-          selected={!isOPenMode}
-          Onclick={() => setIsOPenMode(false)}
-        />
-      </>
-    )
-  }
-
-  const ListFilterItem = ({ children }) => {
-    const [showModal, setShowModal] = useState(false)
-
-    return (
-      <div className={styles.filterItem}>
-        <span
-          className={styles.arrows}
-          role="button"
-          onClick={() => setShowModal(true)}
-        >
-          {children} ▼
-        </span>
-        {showModal && (
-          <div className={styles.modalContainer}>
-            <Modal
-              opened={showModal}
-              onClose={() => setShowModal(false)}
-              placeholder="필터"
-              searchDateList={["버그", "레이블", "애플"]}
-              onClickCell={() => {
-                // 필터 변경 로직을 여기에 구현하세요
-                console.log("필터 클릭!")
-                setShowModal(false) // 작업 후 모달 닫기
-              }}
-            />
-          </div>
-        )}
-      </div>
-    )
-  }
-
-  const ListFilter = () => {
-    // 필요에 따라 onChangeFilter를 올바르게 처리하세요
-    return (
-      <div className={styles.filterlist}>
-        <ListFilterItem>Author</ListFilterItem>
-        <ListFilterItem>Label</ListFilterItem>
-        <ListFilterItem>프로젝트</ListFilterItem>
-        <ListFilterItem>Milestones</ListFilterItem>
-        <ListFilterItem>Assignee</ListFilterItem>
-        <ListFilterItem>Sort</ListFilterItem>
-      </div>
-    )
+  const handleModeChange = (isOpen) => {
+    setIsOpenMode(isOpen)
+    setPage(1) // 페이지를 1로 재설정하여 첫 페이지부터 데이터를 가져오도록 함
   }
 
   return (
@@ -130,7 +54,10 @@ const ListContainer = () => {
             New Issue
           </Button>
         </div>
-        <OpenClosedFilters />
+        <OpenClosedFilters
+          isOpenMode={isOpenMode}
+          onClickMode={handleModeChange}
+        />
         <ListItemLayout className={styles.listfilter}>
           <ListFilter onChangeFilter={(filterData) => {}} />
         </ListItemLayout>
