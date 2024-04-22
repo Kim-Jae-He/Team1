@@ -1,43 +1,43 @@
-import { useState, useEffect } from "react"
-import styles from "./Pagination.module.css"
+import cx from 'clsx';
+import styles from './Pagination.module.css';
 
-import clsx from "clsx"
-
-const Pagination = ({ currentPage, maxPage, onClickPageButton }) => {
-  const PageButton = ({ number, onClick, selected }) => {
-    return (
-      <button
-        className={clsx(styles.button, { [styles.selected]: selected })}
-        onClick={() => onClick(number)}
-      >
-        {number}
-      </button>
-    )
-  }
-
+function PageButton({ number, onClick, selected }) {
   return (
-    <div>
+    <button
+      type="button"
+      className={cx(styles.button, styles.pageButton, {
+        [styles.selected]: selected,
+      })}
+      onClick={() => onClick(number)}
+    >
+      {number}
+    </button>
+  );
+}
+
+export default function Pagination({ maxPage, currentPage, onClick }) {
+  return (
+    <div className={styles.pagination}>
       <button
-        className={clsx(styles.button, styles.blueButton)}
-        disabled={currentPage === 1}
+        type="button"
+        className={cx(styles.quickButton, styles.button, {
+          [styles.disabled]: currentPage === 1,
+        })}
       >
-        {`< Previous`}
+        {'< Previous'}
       </button>
       {new Array(maxPage).fill(null).map((_, i) => (
         <PageButton
+          // eslint-disable-next-line react/no-array-index-key
+          key={i + 1}
           number={i + 1}
-          onClick={onClickPageButton}
+          onClick={onClick}
           selected={i + 1 === currentPage}
         />
       ))}
-      <button
-        className={clsx(styles.button, styles.blueButton)}
-        disabled={currentPage === maxPage}
-      >
-        {"Next >"}
+      <button className={cx(styles.quickButton, styles.button)} type="button">
+        {'Next >'}
       </button>
     </div>
-  )
+  );
 }
-
-export default Pagination

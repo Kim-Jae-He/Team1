@@ -1,25 +1,27 @@
-import Badge from "./Badge";
-import styles from "./ListItem.module.css";
-import ListItemLayout from "./ListItem_Layout";
-import dayjs from "dayjs";
+import dayjs from 'dayjs';
 
-import relativeTime from 'dayjs/plugin/relativeTime'; // 추가: 상대적 시간 플러그인 import
+import Badge from './Badge';
+import ListItemLayout from './ListItemLayout';
+import styles from './ListItem.module.css';
 
-// 상대적 시간 플러그인 활성화
-dayjs.extend(relativeTime);
-
-const ListItem = ({ checked, onClickCheckBox, onClickTitle, data }) => {
+export default function ListItem({
+  checked,
+  onClickCheckBox,
+  onClickTitle,
+  data,
+}) {
+  const isOpenState = data.state === 'open';
   const badges = data.labels;
-  const state = data.state === "open" ? "opened" : "closed";
-  const date = data.state === "open" ? data.created_at : data.closed_at;
+  const state = isOpenState ? 'opened' : 'closed';
+  const date = isOpenState ? data.created_at : data.closed_at;
 
   return (
     <ListItemLayout checked={checked} onClick={onClickCheckBox}>
       <div>
         <div role="button" onClick={onClickTitle} className={styles.title}>
           {data.title}
-          {badges.length > 0 &&
-            badges.map((props, idx) => <Badge key={idx} {...props} />)}
+          {badges &&
+            badges.map((props) => <Badge {...props} key={props.name} />)}
         </div>
         <div className={styles.description}>
           #{data.number} {state} {dayjs(date).fromNow()} by {data.user.login}
@@ -27,6 +29,4 @@ const ListItem = ({ checked, onClickCheckBox, onClickTitle, data }) => {
       </div>
     </ListItemLayout>
   );
-};
-
-export default ListItem;
+}

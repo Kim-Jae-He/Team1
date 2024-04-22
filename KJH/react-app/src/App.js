@@ -1,27 +1,36 @@
-import styles from "./App.module.css"
-import Header from "./Header.js"
-import Button from "./components/Button.js"
-import ListContainer from "./ListContainer.js"
-import Footer from "./Footer.js"
-import axios from "axios"
+import { Route, Routes } from 'react-router-dom';
+
+import Nav from './components/Nav';
+import Header from './components/Header';
+
+import Issue from './pages/Issue';
+import CreateIssue from './pages/CreateIssue';
+import Projects from './pages/Projects';
+import PullRequest from './pages/PullRequest';
+import Code from './pages/Code';
+import Security from './pages/Security';
+import Actions from './pages/Actions';
+import { QueryClientProvider, QueryClient } from 'react-query';
+
+const queryClient = new QueryClient();
 
 function App() {
-  async function getData() {
-    const data = await axios.get(
-      `https://api.github.com/repos/facebook/react/issues`,
-    )
-    console.log({ data })
-  }
-
-  getData()
   return (
-    <>
-      <div className={styles.nav}>Nav </div>
+    <QueryClientProvider client={queryClient}>
+      <Nav />
       <Header />
-      <ListContainer />
-      <Footer />
-    </>
-  )
+      <Routes>
+        <Route path="/" element={<Issue />} />
+        <Route path="/issue" element={<Issue />} />
+        <Route path="/new" element={<CreateIssue />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/pulls" element={<PullRequest />} />
+        <Route path="/code" element={<Code />} />
+        <Route path="/security" element={<Security />} />
+        <Route path="/actions" element={<Actions />} />
+      </Routes>
+    </QueryClientProvider>
+  );
 }
 
-export default App
+export default App;

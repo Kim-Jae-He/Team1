@@ -1,15 +1,9 @@
-import styles from "./Badge.module.css"
+import styles from './Badge.module.css';
 
-const Badge = ({ name, color }) => {
-  const badgeStyle = {
-    background: `#${color}`,
-  }
-
+export default function Badge({ color, name }) {
   return (
-    <span className={styles.badge} style={badgeStyle}>
+    <span className={styles.badge} style={{ background: `#${color}` }}>
       {name}
     </span>
-  )
+  );
 }
-
-export default Badge

@@ -1,15 +1,8 @@
-.button{
+.button {
     display: flex;
     padding: 5px 16px;
     border-radius: 6px;
-    border: 1px solid rgba(58, 82, 82, 0.6);
+    border: 1px solid rgba(27, 31, 36, 0.15);
     align-items: center;
 }
-
-.ul{
-    list-style: none;
-  }
   
-  .li{
-    list-style: none;
-  }

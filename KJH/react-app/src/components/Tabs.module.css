@@ -1,8 +1,8 @@
-.tabList{
+.tabList {
     display: flex;
 }
 
-.tab{
+.tab {
     display: flex;
     border: none;
     background: transparent;
@@ -12,7 +12,23 @@
     margin-right: 10px;
 }
 
-.selected{
-    border-bottom:red 2px solid ;
+.selected {
+    border-bottom: #fa4549 2px solid;
     font-weight: 800;
+}
+
+
+.circle {   
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(27,31,36,0.08);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-left: 3px;
+}
+
+.link {
+    text-decoration: none;
 }

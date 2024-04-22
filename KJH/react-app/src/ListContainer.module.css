@@ -1,78 +1,52 @@
-.listContainer{
-    padding: 0 32px;
-    margin-top: 24px;
-
+.listContainer {
+  padding: 0 32px;
+  margin-top: 24px;
 }
 
-.topSection{
-    display: flex;
-    flex-direction: 'space-between';
-margin-bottom: 20px;
+.topSection {
+  display: flex;
+  flex-direction: 'space-between';
+  margin-bottom: 20px;
 }
 
-.input{
-    background: #f6f8fa;
-    border-radius: 6px;
-    border: 1px solid #d0d7de;
-    padding-left: 10px;
-    color: #57606a;
-    width: 60%;
-    margin-right: auto;
-    box-shadow: none;
+.input {
+  background: #f6f8fa;
+  border-radius: 6px;
+  border: 1px solid #d0d7de;
+  padding-left: 10px;
+  color: #57606a;
+  width: 60%;
+  margin-right: auto;
+  box-shadow: none;
 }
 
-
-
-.filterlist{
-    display: flex;
-    align-items: center;
+.input:focus {
+  background: #ffffff;
 }
 
-.listfilter{
-    margin-top: 20px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    background: rgb(246,248,250);
-    padding: 10px;
+.container {
+  margin-top: 20px;
 }
 
-.filterlist> div >span{
-    padding: 0 16px;
-    line-height: 21px;
-    cursor: pointer;
-    color: #57606a;
+.listFilter {
+  border: 1px solid #d0d7de;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom: none;
+  background: rgb(246, 248, 250);
+  padding: 16px;
 }
 
-.filterlist > span:hover{
-    color:#000000;
-}
-
-.textFilter{
-    margin-right: 5px;
-    cursor: pointer;
-}
-
-.selected{
- font-weight: 800;
-}
-
-.modalContainer{
-    top: 20px;
-    left: 20px;
-    position: absolute;
-}
-
-.filterItem {
-    position: relative;
+.wrapperCustom:hover {
+  background: rgb(246, 248, 250);
 }
 
 
-.arrows{
-    cursor: pointer;
+.paginationContainer {
+  display: flex;
+  justify-content: center;
 }
 
-
-.paginationContainer{
-    display: flex;
-    justify-content: center;
+.link {
+  text-decoration: none;
 }

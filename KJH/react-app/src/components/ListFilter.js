@@ -6,7 +6,6 @@ import Modal from './Modal';
 import styles from './ListFilter.module.css';
 import { GITHUB_API } from '../api';
 
-
 function ListFilterItem({
   children,
   placeholder,

@@ -1,18 +1,18 @@
-import clsx from "clsx"
-import React from "react"
+import cx from 'clsx';
+import React from 'react';
 
-import styles from "./OpenClosedFilters.module.css"
+import styles from './OpenClosedFilters.module.css';
 
 function OpenClosedFilter({ state, onClick, selected }) {
   return (
     <span
-      className={clsx(styles.textFilter, { [styles.selected]: selected })}
+      className={cx(styles.textFilter, { [styles.selected]: selected })}
       onClick={onClick}
       role="button"
     >
       {state}
     </span>
-  )
+  );
 }
 
 export default function OpenClosedFilters({ isOpenMode, onClickMode }) {
@@ -21,13 +21,13 @@ export default function OpenClosedFilters({ isOpenMode, onClickMode }) {
       <OpenClosedFilter
         state="Open"
         selected={isOpenMode}
-        onClick={() => onClickMode("open")}
+        onClick={() => onClickMode('open')}
       />
       <OpenClosedFilter
         state="Closed"
         selected={!isOpenMode}
-        onClick={() => onClickMode("closed")}
+        onClick={() => onClickMode('closed')}
       />
     </>
-  )
+  );
 }
